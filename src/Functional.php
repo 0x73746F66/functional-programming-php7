@@ -20,7 +20,7 @@ abstract class Functional {
     }
     $results = [];
     foreach ($items as $key => $item) {
-      $results[] = $func($item, $key);
+      $results[] = call_user_func($func, $item, $key);
     }
 
     return $results;
@@ -37,7 +37,7 @@ abstract class Functional {
         __FILE__, __LINE__);
     }
     foreach ($items as $key => $item) {
-      $func($item, $key);
+      call_user_func($func, $item, $key);
     }
   }
 }
