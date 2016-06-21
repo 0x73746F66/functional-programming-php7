@@ -2,22 +2,19 @@
 declare(strict_types = 1);
 namespace Pattern;
 
-
 /**
  * Class Functional
+ *
+ * @package Pattern
  */
 abstract class Functional {
   /**
    * @param array $items
-   * @param $func
+   * @param       $func
    * @return array
    * @throws Functional\Exception
    */
-  public static function map(array $items, $func): array {
-    if (!is_callable($func)) {
-      throw new Functional\Exception('Functional::map argument 2 ($func) must be of type Closure', 0, E_USER_ERROR,
-        __FILE__, __LINE__);
-    }
+  public static function map(array $items, callable $func): array {
     $results = [];
     foreach ($items as $key => $item) {
       $results[] = call_user_func($func, $item, $key);
@@ -28,14 +25,10 @@ abstract class Functional {
 
   /**
    * @param array $items
-   * @param $func
+   * @param       $func
    * @throws Functional\Exception
    */
-  public static function each(array $items, $func): void {
-    if (!is_callable($func)) {
-      throw new Functional\Exception('Functional::each argument 2 ($func) must be of type Closure', 0, E_USER_ERROR,
-        __FILE__, __LINE__);
-    }
+  public static function each(array $items, callable $func): void {
     foreach ($items as $key => $item) {
       call_user_func($func, $item, $key);
     }

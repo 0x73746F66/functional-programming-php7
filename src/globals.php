@@ -5,7 +5,7 @@ use Pattern\Functional;
 if (!function_exists('array_each')) {
   /**
    * @param array $items
-   * @param $func
+   * @param       $func
    * @throws Functional\Exception
    */
   function array_each(array $items, $func): void {
@@ -15,7 +15,7 @@ if (!function_exists('array_each')) {
 if (!function_exists('array_map')) {
   /**
    * @param array $items
-   * @param $func
+   * @param       $func
    * @return array
    * @throws Functional\Exception
    */
@@ -26,7 +26,7 @@ if (!function_exists('array_map')) {
 if (!function_exists('array_pluck')) {
   /**
    * @param array $items
-   * @param $name
+   * @param       $name
    * @return array
    */
   function array_pluck(array $items, $name) {

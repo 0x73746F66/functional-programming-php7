@@ -1,10 +1,13 @@
 <?php
 declare(strict_types = 1);
 namespace Pattern\Functional;
+
 use Pattern\Functional;
 
 /**
  * Class Collection
+ *
+ * @package Pattern\Functional
  */
 class Collection extends Functional {
   /**
@@ -14,6 +17,7 @@ class Collection extends Functional {
 
   /**
    * Collection constructor.
+   *
    * @param array $collection
    */
   public function __construct(array $collection) {
@@ -21,7 +25,7 @@ class Collection extends Functional {
   }
 
   /**
-   * @param array $collection
+   * @param array  $collection
    * @param string $name
    * @return array
    */
@@ -38,6 +42,7 @@ class Collection extends Functional {
     return parent::map(
       $this->a, function ($item, $key) use ($name) {
       return $key !== $name ?: $item;
-    });
+    }
+    );
   }
 }

@@ -3,7 +3,9 @@ declare(strict_types = 1);
 namespace Pattern\Functional;
 
 /**
- * Class FunctionalException
+ * Class Exception
+ *
+ * @package Pattern\Functional
  */
 class Exception extends \Exception {
   /**
@@ -12,12 +14,13 @@ class Exception extends \Exception {
   protected $severity;
 
   /**
-   * FunctionalException constructor.
+   * Exception constructor.
+   *
    * @param string $message
-   * @param int $code
-   * @param int $severity
+   * @param int    $code
+   * @param int    $severity
    * @param string $filename
-   * @param int $lineno
+   * @param int    $lineno
    */
   public function __construct(string $message, int $code, int $severity, string $filename, int $lineno) {
     $this->message = $message;
