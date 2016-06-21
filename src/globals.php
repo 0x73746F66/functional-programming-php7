@@ -30,6 +30,27 @@ if (!function_exists('array_pluck')) {
    * @return array
    */
   function array_pluck(array $items, $name) {
-    return Functional\Collection::pluckFrom($items, $name);
+    return Functional\Dictionary::pluckFrom($items, $name);
+  }
+}
+
+if (!function_exists('array_flatten')) {
+  /**
+   * @param array $items
+   * @return array
+   */
+  function array_flatten(array $items): array {
+    return Functional::flatten($items);
+  }
+}
+
+if (!function_exists('compose')) {
+  /**
+   * @param callable[] ...$functions
+   * @return mixed
+   */
+  function compose(callable ...$functions) {
+    $args = func_get_args();
+    return call_user_func_array(['Functional','compose'], $args);
   }
 }
