@@ -6,29 +6,24 @@ use Pattern\Functional;
 
 /**
  * Class Dictionary
- *
  * @package Pattern\Functional
  */
-class Dictionary extends Functional {
-  /**
-   * @var array
-   */
-  private $data = [];
-
+class Dictionary extends Struct {
   /**
    * Dictionary constructor.
-   *
    * @param array $data
    */
   public function __construct(array $data) {
     $this->data = $data;
+
+    return $this;
   }
 
   /**
    * @param array $data
    * @throws Exception
    */
-  public function validate(array $data): void {
+  public static function validate(array $data) {
     if (array_keys($data) === array_keys(array_values($data))) {
       throw new Functional\Exception(
         'Dictionary::validate Dictionary must be indexed by keys', 0, E_USER_ERROR, __FILE__, __LINE__
@@ -49,7 +44,7 @@ class Dictionary extends Functional {
    * @param null   $default
    * @return null
    */
-  public function getValue(string $key, $default = NULL) {
+  public function getValue(string $key, $default = null) {
     if ($this->hasValue($key)) {
       return $this->data[$key];
     }
@@ -62,7 +57,7 @@ class Dictionary extends Functional {
    * @param string $name
    * @return array
    */
-  public static function pluckFrom(array $collection, string $name) {
+  public static function pluckFrom(Struct $collection, string $name) {
     return (new self($collection))->pluck($name);
   }
 
@@ -72,8 +67,8 @@ class Dictionary extends Functional {
    * @throws Exception
    */
   public function pluck(string $name) {
-    return parent::map(
-      $this->data, function ($item, $key) use ($name) {
+    return $this->map(
+      function($item, $key) use ($name) {
         return $key !== $name ?: $item;
       }
     );
@@ -91,8 +86,8 @@ class Dictionary extends Functional {
         'Dictionary::validate Dictionary $key must be a string', 0, E_USER_ERROR, __FILE__, __LINE__
       );
     }
-    $this->validate([$key => $value]);
-    $copy = clone $this;
+    static::validate([$key => $value]);
+    $copy             = clone $this;
     $copy->data[$key] = $value;
 
     return $copy;
@@ -107,5 +102,12 @@ class Dictionary extends Functional {
     unset($copy->data[$key]);
 
     return $copy;
+  }
+
+  /**
+   * @return array
+   */
+  public function getData(): array {
+    return $this->data;
   }
 }

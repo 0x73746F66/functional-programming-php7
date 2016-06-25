@@ -6,22 +6,17 @@ use Pattern\Functional;
 
 /**
  * Class UnorderedList
- *
  * @package Pattern\Functional
  */
-class UnorderedList extends Functional {
-  /**
-   * @var array
-   */
-  private $data = [];
-
+class UnorderedList extends Struct {
   /**
    * UnorderedList constructor.
-   *
    * @param array $data
    */
   public function __construct(array $data) {
     $this->data = $data;
+
+    return $this;
   }
 
   /**

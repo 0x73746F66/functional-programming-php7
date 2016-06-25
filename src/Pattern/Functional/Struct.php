@@ -1,22 +1,26 @@
 <?php
 declare(strict_types = 1);
-namespace Pattern;
+namespace Pattern\Functional;
 
 /**
  * Class Functional
- *
  * @package Pattern
  */
-abstract class Functional {
+abstract class Struct {
+  /**
+   * @var array
+   */
+  public $data = [];
+
   /**
    * @param array $items
    * @param       $func
    * @return array
    * @throws Functional\Exception
    */
-  public static function map(array $items, callable $func): array {
+  public function map(callable $func): array {
     $results = [];
-    foreach ($items as $key => $item) {
+    foreach ($this->data as $key => $item) {
       $results[] = call_user_func($func, $item, $key);
     }
 
@@ -28,8 +32,8 @@ abstract class Functional {
    * @param       $func
    * @throws Functional\Exception
    */
-  public static function each(array $items, callable $func): void {
-    foreach ($items as $key => $item) {
+  public function each(callable $func) {
+    foreach ($this->data as $key => $item) {
       call_user_func($func, $item, $key);
     }
   }
@@ -38,8 +42,8 @@ abstract class Functional {
    * @param $collection
    * @return array
    */
-  public static function flatten($collection): array {
-    $stack = [$collection];
+  public function flatten(Struct $collection): array {
+    $stack  = [$collection];
     $result = [];
     while (!empty($stack)) {
       $item = array_shift($stack);
@@ -57,15 +61,14 @@ abstract class Functional {
 
   /**
    * Return a new function that composes all functions in $functions into a single callable
-   *
    * @param \callable[] ...$functions
    * @return mixed
    */
   public static function compose(callable ...$functions) {
     return array_reduce(
       $functions,
-      function ($carry, $item) {
-        return function ($x) use ($carry, $item) {
+      function($carry, $item) {
+        return function($x) use ($carry, $item) {
           return call_user_func($item, $carry($x));
         };
       }

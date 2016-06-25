@@ -51,6 +51,7 @@ if (!function_exists('compose')) {
    */
   function compose(callable ...$functions) {
     $args = func_get_args();
-    return call_user_func_array(['Functional','compose'], $args);
+
+    return call_user_func_array(['Functional', 'compose'], $args);
   }
 }
