@@ -44,14 +44,3 @@ if (!function_exists('array_flatten')) {
   }
 }
 
-if (!function_exists('compose')) {
-  /**
-   * @param callable[] ...$functions
-   * @return mixed
-   */
-  function compose(callable ...$functions) {
-    $args = func_get_args();
-
-    return call_user_func_array(['Functional', 'compose'], $args);
-  }
-}

@@ -57,7 +57,7 @@ class Dictionary extends Struct {
    * @param string $name
    * @return array
    */
-  public static function pluckFrom(Struct $collection, string $name) {
+  public static function pluckFrom(array $collection, string $name) {
     return (new self($collection))->pluck($name);
   }
 
@@ -67,11 +67,7 @@ class Dictionary extends Struct {
    * @throws Exception
    */
   public function pluck(string $name) {
-    return $this->map(
-      function($item, $key) use ($name) {
-        return $key !== $name ?: $item;
-      }
-    );
+    return $this->data[$name] ?? null;
   }
 
   /**

@@ -54,20 +54,5 @@ abstract class Functional {
     return $result;
   }
 
-  /**
-   * Return a new function that composes all functions in $functions into a single callable
-   * @param \callable[] ...$functions
-   * @return mixed
-   */
-  public static function compose(callable ...$functions) {
-    return array_reduce(
-      $functions,
-      function($carry, $item) {
-        return function($x) use ($carry, $item) {
-          return call_user_func($item, $carry($x));
-        };
-      }
-    );
-  }
 }
 

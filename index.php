@@ -5,16 +5,8 @@ use Pattern\Functional\OrderedList;
 use Pattern\Functional\Dictionary;
 use Pattern\Functional\Set;
 
-require_once 'vendor/autoload.php';
-require_once 'src/globals.php';
+require_once 'src/autoload.php';
 
-spl_autoload_register(function($class) {
-  $suffix   = '.php';
-  $parts    = explode('\\', $class);
-  $fileName = end($parts);
-  $path     = str_replace($fileName, '', implode('/', $parts));
-  require_once sprintf('src/%s%s%s', $path, $fileName, $suffix);
-});
 echo '<h1>Data Types</h1>';
 $test =[
   'nsw' => 'sydney',
