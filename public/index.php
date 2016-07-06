@@ -5,7 +5,7 @@ use Pattern\Functional\OrderedList;
 use Pattern\Functional\Dictionary;
 use Pattern\Functional\Set;
 
-require_once 'src/autoload.php';
+require_once '../src/autoload.php';
 
 echo '<h1>Data Types</h1>';
 $test =[
