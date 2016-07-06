@@ -1,3 +1,6 @@
 language: php
+sudo: false
 php:
-  - '7.0.*'
+  - '7.0.8'
+script:
+  - phpunit --bootstrap src/autoload.php tests/
