@@ -18,7 +18,7 @@ $test =[
 ];
 $cities = new Dictionary($test);
 echo '<h2>Dictionary</h2>';
-echo '<strong>Test: </strong>'.print_r($test, true).'<br><br>';
+echo '<strong>Test: </strong><pre>'.print_r($test, true).'</pre><br><br>';
 
 $cities->each(function($city, $state) {
   echo ucfirst($city) . ' is the capital of ' . strtoupper($state) . '<br>';
@@ -27,7 +27,7 @@ $cities->each(function($city, $state) {
 $test = ['nsw', 'vic', 'qld', 'wa', 'sa', 'tas'];
 $state = new Set($test);
 echo '<h2>Set</h2>';
-echo '<strong>Test: </strong>'.implode(', ', $test).'<br><br>';
+echo '<strong>Test: </strong><pre>'.print_r($test, true).'</pre><br><br>';
 $state->each(function($item) {
   echo strtoupper($item) . '<br>';
 });
@@ -35,7 +35,7 @@ $state->each(function($item) {
 $test = ['nsw', 'vic', 'wa', 'vic', 'qld', 'sa', 'tas', 'vic'];
 $state = new OrderedList($test);
 echo '<h2>OrderedList</h2>';
-echo '<strong>Test: </strong>'.implode(', ', $test).'<br><br>';
+echo '<strong>Test: </strong><pre>'.print_r($test, true).'</pre><br><br>';
 $state->each(function($item) {
   echo strtoupper($item) . '<br>';
 });
@@ -43,7 +43,7 @@ $state->each(function($item) {
 $test = ['nsw', 'vic', 'qld', 'qld', 'wa', 'qld', 'sa', 'tas'];
 $state = new UnorderedList($test);
 echo '<h2>UnorderedList</h2>';
-echo '<strong>Test: </strong>'.implode(', ', $test).'<br><br>';
+echo '<strong>Test: </strong><pre>'.print_r($test, true).'</pre><br><br>';
 $state->each(function($item) {
   echo strtoupper($item) . '<br>';
 });
